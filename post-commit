@@ -1,0 +1,21 @@
+#!/bin/bash
+USERNAME=""
+PASSWORD=""
+BASE_DIR="/home/ftproot/backup/"
+PROJECT_FILE=$BASE_DIR"myproject/"
+BACKUP_FILE=$BASE_DIR"bakmyproject/"
+CURRENT_TIME=`date +%Y%m%d%H%M%S`
+#REPOS="$1" 仓库的绝对路径
+REV="$2"
+svn update --username ${USERNAME} --password ${PASSWORD} ${PROJECT_FILE}
+tar -czf ${BACKUP_FILE}/${REV}_${CURRENT_TIME}.tar.gz ${PROJECT_FILE} &
+file_list=`ls ${BACKUP_FILE} | sort -r`
+i=0
+for file in $file_list
+do
+    if (( 5 <= i++ ))
+    then
+        rm -f ${BACKUP_FILE}${file}
+    fi
+done
+
