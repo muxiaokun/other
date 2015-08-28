@@ -1,7 +1,7 @@
 #!/bin/bash
-PROJECT_NAME="xkms"
-PROJECT_FILE="/home/git/xkms.git/"
-BACKUP_FILE="/home/muxiaokun/ftproot/backup/gitbak/"
+PROJECT_NAME=""
+PROJECT_FILE="/home/git/.git/"
+BACKUP_FILE="/home/ftproot/backup/gitbak/"
 CURRENT_TIME=`date +%Y%m%d%H%M%S`
 tar -czf ${BACKUP_FILE}/${PROJECT_NAME}_${CURRENT_TIME}.tar.gz ${PROJECT_FILE}
 file_list=`ls ${BACKUP_FILE} | sort -r`
