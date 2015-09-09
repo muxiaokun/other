@@ -1,5 +1,5 @@
 #!/bin/bash
-back_dir='/home/muxiaokun/userroot/tgit/back'
+back_dir=''
 back_file=`date +%Y%m%d%H%M%S`
 project_dir=`pwd | sed "s/\/[^\/]*$//"`
 project_name=`pwd | sed "s/\/.*\///"`
