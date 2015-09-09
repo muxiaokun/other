@@ -1,15 +1,26 @@
 #!/bin/bash
-PROJECT_NAME=""
-PROJECT_FILE="/home/git/.git/"
-BACKUP_FILE="/home/ftproot/backup/gitbak/"
-CURRENT_TIME=`date +%Y%m%d%H%M%S`
-tar -czf ${BACKUP_FILE}/${PROJECT_NAME}_${CURRENT_TIME}.tar.gz ${PROJECT_FILE}
-file_list=`ls ${BACKUP_FILE} | sort -r`
+back_dir='/home/muxiaokun/userroot/tgit/back'
+back_file=`date +%Y%m%d%H%M%S`
+project_dir=`pwd | sed "s/\/[^\/]*$//"`
+project_name=`pwd | sed "s/\/.*\///"`
+if [ ! -f ${back_dir} ]
+then
+    mkdir ${back_dir}
+fi
+if [ ! -f ${back_dir}/${project_name} ]
+then
+    mkdir ${back_dir}/${project_name}
+fi
+
+cd ${project_dir}
+tar -czf ${back_dir}/${project_name}/${back_file}.tar.gz ${project_name}
+
+file_list=`ls ${back_dir}/${project_name} | sort -r`
 i=0
 for file in $file_list
 do
     if (( 5 <= i++ ))
     then
-        rm -f ${BACKUP_FILE}${file}
+        rm -f ${back_dir}/${project_name}/${file}
     fi
 done
