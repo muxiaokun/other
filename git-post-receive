@@ -3,11 +3,11 @@ back_dir=''
 back_file=`date +%Y%m%d%H%M%S`
 project_dir=`pwd | sed "s/\/[^\/]*$//"`
 project_name=`pwd | sed "s/\/.*\///"`
-if [ ! -f ${back_dir} ]
+if [ ! -d ${back_dir} ]
 then
     mkdir ${back_dir}
 fi
-if [ ! -f ${back_dir}/${project_name} ]
+if [ ! -d ${back_dir}/${project_name} ]
 then
     mkdir ${back_dir}/${project_name}
 fi
