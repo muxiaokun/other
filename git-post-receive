@@ -1,4 +1,6 @@
 #!/bin/bash
+# use git command
+#unset $(git rev-parse --local-env-vars)
 back_dir=''
 back_file=`date +%Y%m%d%H%M%S`
 project_dir=`pwd | sed "s/\/[^\/]*$//"`
