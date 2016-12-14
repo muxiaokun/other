@@ -1,0 +1,8 @@
+#!/bin/bash
+wget http://mirrors.tuna.tsinghua.edu.cn/apache//httpd/httpd-2.4.23.tar.bz2
+wget http://apache.favea.com//apr/apr-1.5.2.tar.bz2
+wget http://apache.favea.com//apr/apr-util-1.5.4.tar.bz2
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.bz2
+wget http://cn2.php.net/get/php-5.5.38.tar.bz2/from/this/mirror -O php-5.5.38.tar.bz2
+wget http://cn2.php.net/get/php-5.6.29.tar.bz2/from/this/mirror -O php-5.6.29.tar.bz2
+wget http://cn2.php.net/get/php-7.0.14.tar.bz2/from/this/mirror -O php-7.0.14.tar.bz2
