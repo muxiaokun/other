@@ -1,0 +1,11 @@
+#!/bin/bash
+lanmp_dir=/lanmp
+nginx_v=nginx-1.13.1
+if [ ! -d ${nginx_v} ]; then
+	tar xzf ${nginx_v}.tar.gz
+fi
+
+cd ${nginx_v} && \
+make clean && \
+./configure --prefix=${lanmp_dir}/nginx && \
+make && make install

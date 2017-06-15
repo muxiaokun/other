@@ -1,0 +1,43 @@
+#!/bin/bash
+lanmp_dir=/lanmp
+httpd_v=httpd-2.4.23
+apr_v=apr-1.5.2
+apr_util_v=apr-util-1.5.4
+pcre_v=pcre-8.38
+
+#initialize
+if [ ! -d ${lanmp_dir} ]; then
+	mkdir ${lanmp_dir}
+fi
+
+if [ ! -d ${httpd_v} ]; then
+	tar xjf ${httpd_v}.tar.bz2
+	tar xjf ${apr_v}.tar.bz2
+	tar xjf ${apr_util_v}.tar.bz2
+	mv ${apr_v} ${httpd_v}/srclib/apr
+	mv ${apr_util_v} ${httpd_v}/srclib/apr-util
+fi
+
+if [ ! -d ${pcre_v} ]; then
+	tar xjf ${pcre_v}.tar.bz2
+fi
+
+#install pcre
+cd ${pcre_v} && \
+make clean && \
+./configure --prefix=${lanmp_dir}/pcre && \
+make && \
+make install
+cd -
+
+#install apache
+cd ${httpd_v} && \
+make clean && \
+./configure --prefix=${lanmp_dir}/httpd \
+	--enable-load-all-modules \
+	--with-pcre=${lanmp_dir}/prce/bin/pcre-config && \
+make && \
+make install
+cd -
+
+chown daemon:daemon -R ${lanmp_dir}

@@ -1,0 +1,20 @@
+#!/bin/bash
+lanmp_dir=/lanmp
+php_l="php-5.6.29 php-7.0.14"
+for php_v in ${php_l}
+do
+	if [ ! -d ${php_v} ]; then
+		tar xjf ${php_v}.tar.bz2
+	fi
+	cd ${php_v} && \
+	make clean && \
+	./configure --prefix=${lanmp_dir}/${php_v} \
+	--with-openssl \
+	--with-pdo-mysql \
+	--with-gd \
+	--enable-mbstring && \
+	make && \
+	make install && \
+	cp php.ini-development ${lanmp_dir}/${php_v}/lib/php.ini && \
+	cd -
+done
