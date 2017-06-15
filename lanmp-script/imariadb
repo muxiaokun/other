@@ -2,12 +2,11 @@
 #yum install -y libxml2-devel ncurses-devel openssl-devel gcc-c++ cmake bison java
 
 lanmp_dir=/lanmp
-mariadb_v=mariadb-10.1.19
+mariadb_v=mariadb-10.2.6
 if [ ! -d ${mariadb_v} ]; then
 	tar xzf ${mariadb_v}.tar.gz
 fi
 cd ${mariadb_v} && \
-make clean && \
 rm -f CMakeCache.txt && \
 mkdir ${lanmp_dir}/data
 cmake . -DCMAKE_INSTALL_PREFIX=${lanmp_dir}/mariadb \

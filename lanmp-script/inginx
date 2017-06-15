@@ -1,11 +1,19 @@
 #!/bin/bash
 lanmp_dir=/lanmp
-nginx_v=nginx-1.13.1
+nginx_v=nginx-1.13.2
+pcre_v=pcre-8.40
+
+if [ ! -d ${pcre_v} ]; then
+	tar xjf ${pcre_v}.tar.bz2
+fi
+
 if [ ! -d ${nginx_v} ]; then
 	tar xzf ${nginx_v}.tar.gz
 fi
 
 cd ${nginx_v} && \
-make clean && \
-./configure --prefix=${lanmp_dir}/nginx && \
-make && make install
+./configure --prefix=${lanmp_dir}/nginx	\
+			--with-pcre=../${pcre_v}/ && \
+make && make install && \
+cd -
+

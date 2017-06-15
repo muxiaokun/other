@@ -1,0 +1,22 @@
+#!/bin/bash
+lanmp_dir=/lanmp
+lanmp_user=lanmp
+net_dev=ens33
+
+#on network
+ifup ${net_dev}
+sed -i s/ONBOOT=no/ONBOOT=yes/g /etc/sysconfig/network-scripts/ifcfg-${net_dev}
+
+#off selinux
+setenforce 0
+sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/sysconfig/selinux
+
+#off firewalld
+systemctl stop firewalld
+systemctl disable firewalld
+
+#add system user & samba user
+useradd ${lanmp_user} -M -d ${lanmp_dir} -p ${lanmp_user}
+cp /etc/skle/.bash* ${lanmp_dir}
+smbpasswd -a ${lanmp_user} -w ${lanmp_user}
+chown ${lanmp_user}:${lanmp_user} -R ${lanmp_dir}

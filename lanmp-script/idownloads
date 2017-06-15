@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#init
+yum -y install wget bzip2 gcc cc gcc-c++ expat-devel libxml2-devel openssl-devel gd-devel cmake ncurses-devel
+
+#pcre http://www.pcre.org/ ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/
+nohup wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.40.tar.bz2 > /dev/null && echo 'pcre download!' &
+
+#nginx http://nginx.org/en/download.html
+nohup wget http://nginx.org/download/nginx-1.13.2.tar.gz > /dev/null && echo 'nginx download' &
+
+#apache http://httpd.apache.org/download.cgi#apache24
+nohup wget http://mirrors.tuna.tsinghua.edu.cn/apache//httpd/httpd-2.4.26.tar.bz2 > /dev/null && echo 'httpd download!' &
+#apache apr http://apr.apache.org/download.cgi
+nohup wget http://ftp.cuhk.edu.hk/pub/packages/apache.org//apr/apr-1.6.2.tar.bz2 > /dev/null && echo 'apr download!' &
+nohup wget http://ftp.cuhk.edu.hk/pub/packages/apache.org//apr/apr-util-1.6.0.tar.bz2 > /dev/null && echo 'apr-util download!' &
+
+#php http://php.net/downloads.php
+nohup wget http://cn2.php.net/get/php-5.6.30.tar.bz2/from/this/mirror -O php-5.6.30.tar.bz2 > /dev/null && echo 'php-5 download!' &
+nohup wget http://cn2.php.net/get/php-7.1.6.tar.bz2/from/this/mirror -O php-7.1.6.tar.bz2 > /dev/null && echo 'php-7 download!' &
+
+#mariadb
+nohup wget https://downloads.mariadb.org/f/mariadb-10.2.6/source/mariadb-10.2.6.tar.gz/from/http%3A//mirrors.neusoft.edu.cn/mariadb/?serve -O mariadb-10.2.6.tar.gz > /dev/null && echo 'mariadb download!' &
+
+#sed -i s/#!.*\/interpreter/#!\/usr\/bin\/perl/g /lanmp/bin/apxs
