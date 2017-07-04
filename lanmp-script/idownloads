@@ -1,4 +1,5 @@
 #!/bin/bash
+<<<<<<< HEAD
 
 #init
 yum -y install wget bzip2 gcc cc gcc-c++ expat-devel libxml2-devel openssl-devel gd-devel cmake ncurses-devel
@@ -23,3 +24,15 @@ nohup wget http://cn2.php.net/get/php-7.1.6.tar.bz2/from/this/mirror -O php-7.1.
 nohup wget https://downloads.mariadb.org/f/mariadb-10.2.6/source/mariadb-10.2.6.tar.gz/from/http%3A//mirrors.neusoft.edu.cn/mariadb/?serve -O mariadb-10.2.6.tar.gz > /dev/null && echo 'mariadb download!' &
 
 #sed -i s/#!.*\/interpreter/#!\/usr\/bin\/perl/g /lanmp/bin/apxs
+=======
+wget http://mirrors.tuna.tsinghua.edu.cn/apache//httpd/httpd-2.4.23.tar.bz2
+wget http://apache.favea.com//apr/apr-1.5.2.tar.bz2
+wget http://apache.favea.com//apr/apr-util-1.5.4.tar.bz2
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.bz2
+wget http://cn2.php.net/get/php-5.5.38.tar.bz2/from/this/mirror -O php-5.5.38.tar.bz2
+wget http://cn2.php.net/get/php-5.6.29.tar.bz2/from/this/mirror -O php-5.6.29.tar.bz2
+wget http://cn2.php.net/get/php-7.0.14.tar.bz2/from/this/mirror -O php-7.0.14.tar.bz2
+wget http://mirrors.hust.edu.cn/apache//httpd/mod_fcgid/mod_fcgid-2.3.9.tar.bz2
+sed -i s/#!.*\/interpreter/#!\/usr\/bin\/perl/g /lanmp/bin/apxs
+wget http://nginx.org/download/nginx-1.13.1.tar.gz
+>>>>>>> 5becfc86274684033461448332e31b5c774cb381
