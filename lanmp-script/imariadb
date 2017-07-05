@@ -19,4 +19,5 @@ cmake . -DCMAKE_INSTALL_PREFIX=${lanmp_dir}/mariadb \
         -DDEFAULT_CHARSET=utf8 \
         -DDEFAULT_COLLATION=utf8_general_ci && \
 make && make install && \
-${lanmp_dir}/mariadb/scripts/mysql_install_db --datadir=${lanmp_dir}/mariadb/data/
+cd ${lanmp_dir}/mariadb/ && \
+./scripts/mysql_install_db --datadir=${lanmp_dir}/mariadb/data/

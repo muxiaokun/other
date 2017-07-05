@@ -11,7 +11,7 @@ systemctl disable firewalld
 
 #add system user
 useradd ${lanmp_user} -M -d ${lanmp_dir} -p ${lanmp_user}
-cp /etc/skle/.bash* ${lanmp_dir}
+cp /etc/skel/.bash* ${lanmp_dir}
 
 #run samba
 systemctl start smb
@@ -22,7 +22,7 @@ cp ${lanmp_dir}/httpd/conf/httpd.conf ${lanmp_dir}/httpd/conf/httpd.conf.bak
 cp -f idefconfig/httpd.conf ${lanmp_dir}/httpd/conf/httpd.conf
 cp ${lanmp_dir}/nginx/conf/nginx.conf ${lanmp_dir}/nginx/conf/nginx.conf.bak
 cp -f idefconfig/nginx.conf ${lanmp_dir}/nginx/conf/nginx.conf
-cp -r idefconfig/htdocs ${lanmp_dir}/httpd/htdocs
+cp -r idefconfig/htdocs ${lanmp_dir}/httpd/
 
 #chown lanmp
 chown ${lanmp_user}:${lanmp_user} -R ${lanmp_dir}

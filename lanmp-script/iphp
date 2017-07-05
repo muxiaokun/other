@@ -13,6 +13,7 @@ do
     --with-openssl \
     --with-pdo-mysql \
     --with-gd \
+    --with-curl \
     --enable-mbstring && \
     make && \
     make install && \
