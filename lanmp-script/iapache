@@ -36,4 +36,4 @@ cd ${httpd_v} && \
 	--with-pcre=${lanmp_dir}/pcre/bin/pcre-config && \
 make && \
 make install && \
-cd - && \
+cd -
