@@ -1,7 +1,10 @@
 just support centos7
+chmod a+x *
 1.idownload
-2.iapache
-3.inginx
-4.iphp
-5.imariadb
-6.iconfig
+2.ipcre
+3.
+    1.iapache
+    2.inginx
+    3.iphp
+    4.imariadb
+4.idone

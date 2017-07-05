@@ -1,0 +1,14 @@
+#!/bin/bash
+. iconfig
+
+cd ${temp_dir}
+
+if [ ! -d ${pcre_v} ]; then
+    tar xjf ${pcre_v}.tar.bz2
+fi
+
+#install pcre
+cd ${pcre_v} && \
+./configure --prefix=${lanmp_dir}/pcre && \
+make && \
+make install

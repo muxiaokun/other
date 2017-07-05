@@ -1,14 +1,13 @@
 #!/bin/bash
-#yum install -y libxml2-devel ncurses-devel openssl-devel gcc-c++ cmake bison java
+. iconfig
 
-lanmp_dir=/lanmp
-mariadb_v=mariadb-10.2.6
+cd ${temp_dir}
+
 if [ ! -d ${mariadb_v} ]; then
-	tar xzf ${mariadb_v}.tar.gz
+    tar xzf ${mariadb_v}.tar.gz
 fi
 cd ${mariadb_v} && \
 rm -f CMakeCache.txt && \
-mkdir ${lanmp_dir}/data
 cmake . -DCMAKE_INSTALL_PREFIX=${lanmp_dir}/mariadb \
         -DWITH_INNOBASE_STORAGE_ENGINE=1 \
         -DWITH_ARCHIVE_STORAGE_ENGINE=1 \
@@ -19,4 +18,5 @@ cmake . -DCMAKE_INSTALL_PREFIX=${lanmp_dir}/mariadb \
         -DMYSQL_UNIX_ADDR=/tmp/mysql.sock \
         -DDEFAULT_CHARSET=utf8 \
         -DDEFAULT_COLLATION=utf8_general_ci && \
-make && make install
+make && make install && \
+${lanmp_dir}/mariadb/scripts/mysql_install_db --datadir=${lanmp_dir}/mariadb/data/

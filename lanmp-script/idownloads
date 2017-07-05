@@ -1,7 +1,17 @@
 #!/bin/bash
+. iconfig
+
+#on network
+ifup ${net_dev}
+sed -i s/ONBOOT=no/ONBOOT=yes/g /etc/sysconfig/network-scripts/ifcfg-${net_dev}
 
 #init
-yum -y install wget bzip2 gcc cc gcc-c++ expat-devel libxml2-devel openssl-devel gd-devel cmake ncurses-devel
+yum -y install wget bzip2 gcc cc gcc-c++ expat-devel libxml2-devel openssl-devel gd-devel cmake ncurses-devel samba
+
+if [ ! -d ${temp_dir} ]; then
+    mkdir ${temp_dir}
+fi
+cd ${temp_dir}
 
 #pcre http://www.pcre.org/ ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/
 nohup wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.40.tar.bz2 > /dev/null && echo 'pcre download!' &

@@ -1,22 +1,30 @@
 #!/bin/bash
+temp_dir=temp
 lanmp_dir=/lanmp
 lanmp_user=lanmp
+#run 'ip addr'
 net_dev=ens33
 
-#on network
-ifup ${net_dev}
-sed -i s/ONBOOT=no/ONBOOT=yes/g /etc/sysconfig/network-scripts/ifcfg-${net_dev}
+#pcre
+pcre_v=pcre-8.40
 
-#off selinux
-setenforce 0
-sed -i s/SELINUX=enforcing/SELINUX=disabled/g /etc/sysconfig/selinux
+#httpd
+httpd_v=httpd-2.4.26
+apr_v=apr-1.6.2
+apr_util_v=apr-util-1.6.0
 
-#off firewalld
-systemctl stop firewalld
-systemctl disable firewalld
+#nginx
+nginx_v=nginx-1.13.2
+pcre_v=pcre-8.40
 
-#add system user & samba user
-useradd ${lanmp_user} -M -d ${lanmp_dir} -p ${lanmp_user}
-cp /etc/skle/.bash* ${lanmp_dir}
-smbpasswd -a ${lanmp_user} -w ${lanmp_user}
-chown ${lanmp_user}:${lanmp_user} -R ${lanmp_dir}
+#php
+php_l="php-5.6.30 php-7.1.6"
+
+#mariadb
+mariadb_v=mariadb-10.2.6
+
+
+#initialize
+if [ ! -d ${lanmp_dir} ]; then
+    mkdir ${lanmp_dir}
+fi
