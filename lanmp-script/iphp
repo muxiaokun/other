@@ -12,6 +12,7 @@ do
     ./configure --prefix=${lanmp_dir}/${php_v} \
     --with-openssl \
     --with-pdo-mysql \
+    --with-mysqli \
     --with-gd \
     --with-curl \
     --enable-mbstring && \
