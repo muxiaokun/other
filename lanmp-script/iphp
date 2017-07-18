@@ -10,12 +10,18 @@ do
     fi
     cd ${php_v} && \
     ./configure --prefix=${lanmp_dir}/${php_v} \
-    --with-openssl \
-    --with-pdo-mysql \
-    --with-mysqli \
-    --with-gd \
-    --with-curl \
-    --enable-mbstring && \
+        --with-openssl=shared \
+        --with-zlib=shared \
+        --with-bz2=shared \
+        --with-curl=shared \
+        --with-mysql=shared \
+        --with-mysqli=shared \
+        --with-pdo-mysql=shared \
+        --with-gd=shared \
+        --enable-fpm \
+        --enable-zip \
+        --enable-sockets \
+        --enable-mbstring && \
     make && \
     make install && \
     cp php.ini-development ${lanmp_dir}/${php_v}/lib/php.ini && \

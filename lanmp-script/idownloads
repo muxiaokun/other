@@ -6,7 +6,7 @@ ifup ${net_dev}
 sed -i s/ONBOOT=no/ONBOOT=yes/g /etc/sysconfig/network-scripts/ifcfg-${net_dev}
 
 #init
-yum -y install wget bzip2 gcc gcc-c++ expat-devel libxml2-devel openssl-devel libcurl-devel gd-devel cmake ncurses-devel samba
+yum -y install wget bzip2 gcc gcc-c++ expat-devel libxml2-devel openssl-devel libcurl-devel gd-devel cmake ncurses-devel bzip2-devel samba 
 
 if [ ! -d ${temp_dir} ]; then
     mkdir ${temp_dir}

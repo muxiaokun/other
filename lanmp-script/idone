@@ -23,6 +23,10 @@ cp -f idefconfig/httpd.conf ${lanmp_dir}/httpd/conf/httpd.conf
 cp ${lanmp_dir}/nginx/conf/nginx.conf ${lanmp_dir}/nginx/conf/nginx.conf.bak
 cp -f idefconfig/nginx.conf ${lanmp_dir}/nginx/conf/nginx.conf
 cp -r idefconfig/htdocs ${lanmp_dir}/httpd/
+for php_v in ${php_l}
+do
+	cp -f idefconfig/${php_v}.ini ${lanmp_dir}/${php_v}/lib/
+done
 
 #chown lanmp
 chown ${lanmp_user}:${lanmp_user} -R ${lanmp_dir}
