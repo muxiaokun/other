@@ -1,1 +1,65 @@
-git diff HEAD~1 HEAD --name-only |xargs tar -czf update.tar.gz #add or update
+#simple git diff HEAD~1 HEAD --name-only |xargs tar -czf update.tar.gz #add or update
+
+#!/bin/bash
+
+START_VERSION="HEAD~1";
+END_VERSION="HEAD";
+if [ ! -z $1 ]; then
+	START_VERSION=$1
+fi
+if [ ! -z $2 ]; then
+	END_VERSION=$2
+fi
+
+CURRENT_FILE=`pwd | xargs basename`
+START_REVERSION=`git rev-parse --short $START_VERSION`
+END_REVERSION=`git rev-parse --short $END_VERSION`
+
+CHANGE_LIST=`git diff $START_VERSION $END_VERSION --name-status`
+PREVIOUS_CHANGE=''
+DELETE_LIST=()
+TAR_LIST=()
+INDEX=0
+for CHANGE in $CHANGE_LIST
+do
+	if [ $(($INDEX % 2)) -eq 1 ]; then
+		if [ $PREVIOUS_CHANGE == "D" ]; then
+			DELETE_LIST[${#DELETE_LIST[*]}]=$CHANGE
+		else
+		    TAR_LIST[${#TAR_LIST[*]}]=$CHANGE
+		fi
+	else
+	    PREVIOUS_CHANGE=$CHANGE
+	fi
+	INDEX=$((INDEX+1))
+done
+
+if [ ${#DELETE_LIST[*]} -gt 0 ]; then
+	echo "========= DELETE SCRIPT ========="
+	echo "#!/bin/bash" > delete_script.sh
+	for DELETE in ${DELETE_LIST[*]}
+	do
+		echo "rm $DELETE"
+		echo "rm $DELETE" >> delete_script.sh
+	done
+	TAR_LIST[${#TAR_LIST[*]}]=delete_script.sh
+fi
+
+if [ ${#TAR_LIST[*]} -gt 0 ]; then
+	echo "===== ADD AND MODIFY IN TAR ====="
+	for TAR in ${TAR_LIST[*]}
+	do
+		echo $TAR
+	done
+fi
+
+if [ ${#DELETE_LIST[*]} -eq 0 -a ${#TAR_LIST[*]} -eq 0 ]; then
+	echo "not find anything!"
+fi
+
+echo ${TAR_LIST[*]} | xargs tar -czf ${CURRENT_FILE}_${START_REVERSION}_to_${END_REVERSION}.tar.gz
+
+
+if [ ${#DELETE_LIST[*]} -gt 0 ]; then
+	rm -rf delete_script.sh
+fi
